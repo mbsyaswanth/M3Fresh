@@ -11,6 +11,7 @@ import {
 
 import OrderItem from "./OrderItem";
 import Navbar from "../Navbar";
+import { goToDeliveryDetailsPage } from "../../utils/RouteUtils";
 
 function OrderDetailsPage(props) {
   const [count, setCount] = useState(0);
@@ -32,7 +33,7 @@ function OrderDetailsPage(props) {
         <CartTotalHeading>
           Total: <CartTotal> ₹ 100</CartTotal>
         </CartTotalHeading>
-        <NextButton>Next</NextButton>
+        <NextButton onClick={() => goToDeliveryDetailsPage()}>Next</NextButton>
       </NextContainer>
     </>
   );
