@@ -1,16 +1,24 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import useCustomInputHandler from "../../customHooks/useInputHandler";
-import { StoreContext } from "../../App";
+import { StoreContext, CartContext } from "../../App";
 
 import ItemCard from "../ItemCard";
 import NavBar from "../Navbar";
 
-import { ProductsContainer, StyledInput, Container } from "./styledComponents";
+import {
+  ProductsContainer,
+  StyledInput,
+  Container,
+  GoToCart,
+} from "./styledComponents";
+import { goToCartSummaryPage } from "../../utils/RouteUtils";
 
 function Products(props) {
+  const history = useHistory();
   const [state, dispatch] = useContext(StoreContext);
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useContext(CartContext);
   const [values, handleChange] = useCustomInputHandler({ filterText: "" });
   const getFilteredProducts = () => {
     return state.stocks.filter((stock) =>
@@ -73,8 +81,12 @@ function Products(props) {
           value={values.filterText}
           placeholder={"Search..."}
         />
+        <ProductsContainer>{renderProductsList()}</ProductsContainer>
       </Container>
-      <ProductsContainer>{renderProductsList()}</ProductsContainer>
+      {/* TODO: need to add this button */}
+      {/* <GoToCart onClick={() => goToCartSummaryPage(history)}>
+        Go To Cart
+      </GoToCart> */}
     </div>
   );
 }
