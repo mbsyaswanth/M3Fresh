@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-import { goToHomePage } from "../../utils/RouteUtils";
+import { goToHomePage, goToCartSummaryPage } from "../../utils/RouteUtils";
 
 import {
   StyledNavBarContainer,
@@ -16,7 +16,7 @@ function Navbar(props) {
     <StyledNavBarContainer>
       <span onClick={() => goToHomePage(history)}>M3Fresh.</span>
       {props.showCart && props.count > 0 ? (
-        <CartIconContainer>
+        <CartIconContainer onClick={() => goToCartSummaryPage(history)}>
           <Badge>{props.count}</Badge>
           <CartIcon />
         </CartIconContainer>

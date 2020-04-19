@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer, useEffect, useState } from "react";
 import firbase from "firebase";
 
 import "./App.css";
@@ -6,6 +6,8 @@ import { initFirebase } from "./firebase";
 import { Routes } from "./routes";
 
 export const StoreContext = createContext();
+
+export const CartContext = createContext();
 
 const initialStocks = {
   stocks: [],
@@ -30,6 +32,7 @@ function storeStocks(state, action) {
 function App() {
   const store = useReducer(storeStocks, initialStocks);
   const [state, dispatch] = store;
+  const cart = useState({});
 
   useEffect(() => {
     initFirebase();
@@ -47,9 +50,11 @@ function App() {
   }, []);
   console.log(state);
   return (
-    <StoreContext.Provider value={store}>
-      <Routes />
-    </StoreContext.Provider>
+    <CartContext.Provider value={cart}>
+      <StoreContext.Provider value={store}>
+        <Routes />
+      </StoreContext.Provider>
+    </CartContext.Provider>
   );
 }
 
