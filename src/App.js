@@ -9,6 +9,7 @@ export const StoreContext = createContext();
 
 const initialStocks = {
   stocks: [],
+  cart: {},
   loading: 100,
 };
 
@@ -18,6 +19,9 @@ function storeStocks(state, action) {
       return { ...state, stocks: action.stocks, loading: 200 };
     case "FETCHING":
       return { ...state, loading: 300 };
+    case "ADD_ITEM":
+      state.cart[action.cartItem.productId] = action.cartItem;
+      return state;
     default:
       return state;
   }
