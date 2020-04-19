@@ -20,14 +20,13 @@ function ItemCard(props) {
   });
   return (
     <Container>
-      <Image
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSmZrZK7PlIXRsRxgl2ad6lA30hHILvQuU0dX95CkULSHlG4sfb&usqp=CAU"
-        alt="item image"
-      />
+      <Image src={props.image} alt="item image" />
       <ItemDetailsContainer>
-        <ItemName>Carrot</ItemName>
+        <ItemName>{props.name}</ItemName>
         <PriceAndQuantityContainer>
-          <Price>₹100/kg</Price>
+          <Price>
+            ₹{props.price}/{props.units}
+          </Price>
           {props.quantity > 0 ? (
             <Quantity>
               <QuantityButton
