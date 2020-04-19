@@ -1,18 +1,26 @@
 import React from 'react';
 import {useHistory} from 'react-router-dom'
 
-import { goToDeliveryDetailsPage } from '../../utils/RouteUtils';
+import Header from '../../components/Header';
+import { goToProductsPage } from '../../utils/RouteUtils';
 
+import { Container, BodyContainer, StayHome, OrderOnline, InfoText, OrderNowButton } from './styledComponents';
 
 const HomePage = () => {
     const history = useHistory()
+    const handleOrderNow=()=>{
+        goToProductsPage(history)
+    }
     return (
-        <div>
-            HomePage
-            <button onClick={()=>{
-                goToDeliveryDetailsPage(history)
-            }}>GO to fill details</button>
-        </div>
+        <Container>
+            <Header/>
+            <BodyContainer>
+                <StayHome>Stay Home!</StayHome>
+                <OrderOnline>Order Online</OrderOnline>
+                <InfoText>* online booking platform for containment zones</InfoText>
+                <OrderNowButton onClick={handleOrderNow} text={'Order Now'}/>
+            </BodyContainer>
+        </Container>
     );
 };
 
