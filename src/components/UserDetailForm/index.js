@@ -4,30 +4,20 @@ import Input from "../Input";
 
 import Button from "../Button";
 
+import useCustomInputHandler from '../../customHooks/useInputHandler'
+
 import { Container, AddessInput } from "./styledComponents";
 
 function UserDetailForm(props) {
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
 
-  const handleChangeName = (e) => {
-    setName(e.target.value);
-  };
+  const {values, handleChange} = useCustomInputHandler({userName:'',phoneNumber:'',address:''})
 
-  const handleChangePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  const handleChangeAddress = (e) => {
-    setAddress(e.target.value);
-  };
 
   const onClickPlaceOrder = () => {
     const obj = {
-      name: name,
-      phone_number: phoneNumber,
-      address: address,
+      userName: values.userName,
+      phone_number: values.phoneNumber,
+      address: values.address,
     };
     props.onClickPlaceOrder(obj);
   };
@@ -35,18 +25,21 @@ function UserDetailForm(props) {
   return (
     <Container>
       <Input
-        value={name}
-        onChange={handleChangeName}
+      name={"userName"}
+        value={values.userName}
+        onChange={handleChange}
         placeholder={"Full Name"}
       />
       <Input
-        value={phoneNumber}
-        onChange={handleChangePhoneNumber}
+      name={"phoneNumber"}
+        value={values.phoneNumber}
+        onChange={handleChange}
         placeholder={"Mobile Number"}
       />
       <AddessInput
-        value={address}
-        onChange={handleChangeAddress}
+      name={"address"}
+        value={values.address}
+        onChange={handleChange}
         placeholder={"Address"}
       />
 
