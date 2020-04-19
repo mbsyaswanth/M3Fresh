@@ -5,10 +5,11 @@ import "./App.css";
 import { initFirebase } from "./firebase";
 import { Routes } from "./routes";
 
-const StoreContext = createContext();
+export const StoreContext = createContext();
 
 const initialStocks = {
   stocks: [],
+  loading: 100,
 };
 
 function storeStocks(state, action) {
