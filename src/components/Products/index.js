@@ -19,6 +19,23 @@ function Products(props) {
             image={product.product_image}
             price={product.price}
             units={product.units}
+            quantity={
+              state.cart[product.product_id]
+                ? state.cart[product.product_id].quantity
+                : undefined
+            }
+            onAdd={() => {
+              dispatch({
+                type: "ADD_ITEM",
+                cartItem: { productId: product.product_id, quantity: 1 },
+              });
+            }}
+            increment={() => {
+              console.log("hi");
+            }}
+            decrement={() => {
+              console.log("hello");
+            }}
           />
         ))}
       </ProductsContainer>

@@ -14,10 +14,6 @@ import {
 } from "./styledComponents";
 
 function ItemCard(props) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    document.title = `You clicked ${count} times`;
-  });
   return (
     <Container>
       <Image src={props.image} alt="item image" />
@@ -30,18 +26,16 @@ function ItemCard(props) {
           {props.quantity > 0 ? (
             <Quantity>
               <QuantityButton
-                disabled={count <= 0}
-                onClick={() => setCount(count - 1)}
+                disabled={props.quantity <= 0}
+                onClick={props.decrement}
               >
                 -
               </QuantityButton>
-              <QtyCount>{count}</QtyCount>
-              <QuantityButton onClick={() => setCount(count + 1)}>
-                +
-              </QuantityButton>
+              <QtyCount>{props.quantity}</QtyCount>
+              <QuantityButton onClick={props.increment}>+</QuantityButton>
             </Quantity>
           ) : (
-            <AddToCart onClick={() => setCount(count + 1)}>Add</AddToCart>
+            <AddToCart onClick={props.onAdd}>Add</AddToCart>
           )}
         </PriceAndQuantityContainer>
       </ItemDetailsContainer>
