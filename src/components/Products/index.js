@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import {SyncLoader} from "react-spinners"
 
 import useCustomInputHandler from "../../customHooks/useInputHandler";
 import { StoreContext } from "../../App";
@@ -6,7 +7,7 @@ import { StoreContext } from "../../App";
 import ItemCard from "../ItemCard";
 import NavBar from "../Navbar";
 
-import { ProductsContainer, StyledInput, Container } from "./styledComponents";
+import { ProductsContainer, StyledInput, Container, LoaderContainer } from "./styledComponents";
 
 function Products(props) {
   const [state, dispatch] = useContext(StoreContext);
@@ -57,6 +58,10 @@ function Products(props) {
       />
     ));
   };
+
+  const renderLoader =() => {
+    return <LoaderContainer><SyncLoader size={7} margin={1} color={'#178e1c'}/></LoaderContainer>
+  }
   return (
     <div>
       <NavBar />
@@ -68,7 +73,7 @@ function Products(props) {
           placeholder={"Search..."}
         />
       </Container>
-      <ProductsContainer>{renderProductsList()}</ProductsContainer>
+      <ProductsContainer>{state.loading === 200 ? renderProductsList() : renderLoader()}</ProductsContainer>
     </div>
   );
 }
