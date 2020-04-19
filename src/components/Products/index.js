@@ -12,7 +12,7 @@ function Products(props) {
   const [state, dispatch] = useContext(StoreContext);
   const [values,handleChange] = useCustomInputHandler({filterText:''})
   const getFilteredProducts=()=>{
-    return state.stocks.filter(stock => stock.product_name.includes(values.filterText))
+    return state.stocks.filter(stock => stock.product_name.toLowerCase().includes(values.filterText.toLowerCase()))
   }
   const renderProductsList=()=>{
     const filteredProducts = getFilteredProducts()
