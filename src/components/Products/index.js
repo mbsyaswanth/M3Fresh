@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import useCustomInputHandler from "../../customHooks/useInputHandler";
 import { StoreContext } from "../../App";
@@ -10,12 +10,15 @@ import { ProductsContainer, StyledInput, Container } from "./styledComponents";
 
 function Products(props) {
   const [state, dispatch] = useContext(StoreContext);
-  const [values,handleChange] = useCustomInputHandler({filterText:''})
-  const getFilteredProducts=()=>{
-    return state.stocks.filter(stock => stock.product_name.toLowerCase().includes(values.filterText.toLowerCase()))
-  }
-  const renderProductsList=()=>{
-    const filteredProducts = getFilteredProducts()
+  const [cart, setCart] = useState({});
+  const [values, handleChange] = useCustomInputHandler({ filterText: "" });
+  const getFilteredProducts = () => {
+    return state.stocks.filter((stock) =>
+      stock.product_name.toLowerCase().includes(values.filterText.toLowerCase())
+    );
+  };
+  const renderProductsList = () => {
+    const filteredProducts = getFilteredProducts();
     return filteredProducts.map((product) => (
       <ItemCard
         key={product.product_id}
@@ -23,35 +26,49 @@ function Products(props) {
         image={product.product_image}
         price={product.price}
         units={product.units}
-        quantity={
-          state.cart[product.product_id]
-            ? state.cart[product.product_id].quantity
-            : undefined
-        }
+        quantity={cart[product.product_id]?.quantity}
         onAdd={() => {
-          dispatch({
-            type: "ADD_ITEM",
-            cartItem: { productId: product.product_id, quantity: 1 },
+          setCart({
+            ...cart,
+            [product.product_id]: {
+              productId: product.product_id,
+              quantity: 1,
+            },
           });
         }}
         increment={() => {
-          console.log("hi");
+          setCart({
+            ...cart,
+            [product.product_id]: {
+              productId: product.product_id,
+              quantity: cart[product.product_id].quantity + 1,
+            },
+          });
         }}
         decrement={() => {
-          console.log("hello");
+          setCart({
+            ...cart,
+            [product.product_id]: {
+              productId: product.product_id,
+              quantity: cart[product.product_id].quantity - 1,
+            },
+          });
         }}
       />
-    ))
-  }
+    ));
+  };
   return (
     <div>
       <NavBar />
       <Container>
-      <StyledInput name={'filterText'} onChange={handleChange} value={values.filterText} placeholder={'Search...'}/>
+        <StyledInput
+          name={"filterText"}
+          onChange={handleChange}
+          value={values.filterText}
+          placeholder={"Search..."}
+        />
       </Container>
-      <ProductsContainer>
-        {renderProductsList()}
-      </ProductsContainer>
+      <ProductsContainer>{renderProductsList()}</ProductsContainer>
     </div>
   );
 }

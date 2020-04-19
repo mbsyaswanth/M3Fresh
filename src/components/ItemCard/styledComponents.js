@@ -41,7 +41,7 @@ export const Price = styled.h4`
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 14px;
   color: #178e1c;
   text-align: left;
   margin: 0;
@@ -56,10 +56,10 @@ export const AddToCart = styled.button`
   font-family: Rubik;
   font-style: normal;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 12px;
   color: white;
   background-color: #178e1c;
-  padding: 5px 10px;
+  padding: 4px 8px;
   border-radius: 4px;
   border: none;
   :hover {
@@ -74,7 +74,7 @@ export const QuantityButton = styled.button`
   font-family: Rubik;
   font-style: normal;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 14px;
   padding: 2px 6px;
   color: #178e1c;
   :hover {
@@ -86,10 +86,9 @@ export const QtyCount = styled.span`
   font-family: Rubik;
   font-style: normal;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 14px;
   color: #178e1c;
   padding: 5px;
-  margin: 0 5px;
   min-width: 15px;
   text-align: center;
 `;
