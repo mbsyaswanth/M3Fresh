@@ -29,7 +29,10 @@ function ItemCard(props) {
             ₹ {props.price} / {props.unit}
           </ItemPrice>
           <QuantityContainer>
-            <QuantityButton onClick={() => setCount(count - 1)}>
+            <QuantityButton
+              disabled={count <= 0}
+              onClick={() => setCount(count - 1)}
+            >
               -
             </QuantityButton>
             <QtyCount>{count}</QtyCount>

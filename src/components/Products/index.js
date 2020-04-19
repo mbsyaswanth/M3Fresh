@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import { ProductsContainer } from "./styledComponents";
 import ItemCard from "../ItemCard";
-import { NavBar } from "../OrderDetailsPage/styledComponents";
+import NavBar from "../Navbar";
 
 function Products(props) {
   return (
     <div>
-      <NavBar>M3Fresh.</NavBar>
+      <NavBar />
       <ProductsContainer>
         <ItemCard />
         <ItemCard />

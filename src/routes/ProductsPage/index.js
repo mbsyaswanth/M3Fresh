@@ -1,16 +1,12 @@
-import React from 'react';
-import {useHistory} from 'react-router-dom'
+import React from "react";
+import { useHistory } from "react-router-dom";
 
-import { goToHomePage } from '../../utils/RouteUtils';
+import { goToHomePage } from "../../utils/RouteUtils";
+import Products from "../../components/Products";
 
 const ProductsPage = () => {
-    const history = useHistory()
-    return (
-        <div>
-            ProductsPage
-            <button onClick = {()=>{goToHomePage(history)}}>Go to HomePage</button>
-        </div>
-    );
+  const history = useHistory();
+  return <Products />;
 };
 
 export default ProductsPage;

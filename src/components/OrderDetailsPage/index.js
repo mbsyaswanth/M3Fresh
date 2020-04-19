@@ -10,7 +10,7 @@ import {
 } from "./styledComponents";
 
 import OrderItem from "./OrderItem";
-import Header from "../Header";
+import Navbar from "../Navbar";
 
 function OrderDetailsPage(props) {
   const [count, setCount] = useState(0);
@@ -19,7 +19,7 @@ function OrderDetailsPage(props) {
   });
   return (
     <>
-    <Header/>
+      <Navbar />
       <OrdersContainer>
         <OrdersHeading>Order Summary</OrdersHeading>
         <OrderItem itemName="Carrot" price="25" count={1} unit="KG" />

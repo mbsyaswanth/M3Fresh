@@ -30,7 +30,10 @@ function ItemCard(props) {
           <Price>₹100/kg</Price>
           {props.quantity > 0 ? (
             <Quantity>
-              <QuantityButton onClick={() => setCount(count - 1)}>
+              <QuantityButton
+                disabled={count <= 0}
+                onClick={() => setCount(count - 1)}
+              >
                 -
               </QuantityButton>
               <QtyCount>{count}</QtyCount>

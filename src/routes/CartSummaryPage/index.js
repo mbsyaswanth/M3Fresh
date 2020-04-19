@@ -1,11 +1,8 @@
-import React from 'react';
+import React from "react";
+import OrderDetailsPage from "../../components/OrderDetailsPage";
 
 const CartSummaryPage = () => {
-    return (
-        <div>
-            CartSummaryPage
-        </div>
-    );
+  return <OrderDetailsPage />;
 };
 
 export default CartSummaryPage;

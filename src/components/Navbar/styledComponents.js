@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const NavBar = styled.div`
+export const StyledNavBarContainer = styled.div`
   background: #d7e6d0;
   padding: 10px 16px;
   font-family: Rubik;
