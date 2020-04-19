@@ -21,7 +21,7 @@ function Products(props) {
   const [cart, setCart] = useContext(CartContext);
   const [values, handleChange] = useCustomInputHandler({ filterText: "" });
   const getFilteredProducts = () => {
-    return state.stocks.filter((stock) =>
+    return Object.values(state.stocks).filter((stock) =>
       stock.product_name.toLowerCase().includes(values.filterText.toLowerCase())
     );
   };
