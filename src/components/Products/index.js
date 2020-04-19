@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { ProductsContainer } from "./styledComponents";
 import ItemCard from "../ItemCard";
@@ -7,6 +7,8 @@ import { StoreContext } from "../../App";
 
 function Products(props) {
   const [state, dispatch] = useContext(StoreContext);
+  const [cart, setCart] = useState({});
+  console.log(cart);
 
   return (
     <div>
@@ -19,22 +21,33 @@ function Products(props) {
             image={product.product_image}
             price={product.price}
             units={product.units}
-            quantity={
-              state.cart[product.product_id]
-                ? state.cart[product.product_id].quantity
-                : undefined
-            }
+            quantity={cart[product.product_id]?.quantity}
             onAdd={() => {
-              dispatch({
-                type: "ADD_ITEM",
-                cartItem: { productId: product.product_id, quantity: 1 },
+              setCart({
+                ...cart,
+                [product.product_id]: {
+                  productId: product.product_id,
+                  quantity: 1,
+                },
               });
             }}
             increment={() => {
-              console.log("hi");
+              setCart({
+                ...cart,
+                [product.product_id]: {
+                  productId: product.product_id,
+                  quantity: cart[product.product_id].quantity + 1,
+                },
+              });
             }}
             decrement={() => {
-              console.log("hello");
+              setCart({
+                ...cart,
+                [product.product_id]: {
+                  productId: product.product_id,
+                  quantity: cart[product.product_id].quantity - 1,
+                },
+              });
             }}
           />
         ))}
