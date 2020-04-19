@@ -51,3 +51,9 @@ export const GoToCart = styled.button`
     background-color: #156e1b;
   }
 `;
+
+export const LoaderContainer = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+`

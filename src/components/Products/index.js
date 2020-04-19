@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
+import {SyncLoader} from "react-spinners"
 import { useHistory } from "react-router-dom";
 
 import useCustomInputHandler from "../../customHooks/useInputHandler";
 import { StoreContext, CartContext } from "../../App";
+import { goToCartSummaryPage } from "../../utils/RouteUtils";
 
 import ItemCard from "../ItemCard";
 import NavBar from "../Navbar";
@@ -12,8 +14,8 @@ import {
   StyledInput,
   Container,
   GoToCart,
+  LoaderContainer
 } from "./styledComponents";
-import { goToCartSummaryPage } from "../../utils/RouteUtils";
 
 function Products(props) {
   const history = useHistory();
@@ -71,6 +73,10 @@ function Products(props) {
       />
     ));
   };
+
+  const renderLoader =() => {
+    return <LoaderContainer><SyncLoader size={7} margin={1} color={'#178e1c'}/></LoaderContainer>
+  }
   return (
     <div>
       <NavBar showCart={true} count={Object.keys(cart).length} />
@@ -83,6 +89,7 @@ function Products(props) {
         />
         <ProductsContainer>{renderProductsList()}</ProductsContainer>
       </Container>
+      <ProductsContainer>{state.loading === 200 ? renderProductsList() : renderLoader()}</ProductsContainer>
       {/* TODO: need to add this button */}
       {/* <GoToCart onClick={() => goToCartSummaryPage(history)}>
         Go To Cart
