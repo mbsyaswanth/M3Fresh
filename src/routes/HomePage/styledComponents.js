@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Button from '../../components/Button'
 
 export const Container = styled.div`
-height:100vh;
+height: -webkit-fill-available;
 flex:1;
 display:flex;
 flex-direction:column;
@@ -12,6 +12,7 @@ justify-content:flex-start;
 `
 
 export const BodyContainer = styled.div`
+padding-top:90px;
 flex:1;
 display:flex;
 flex-direction:column;

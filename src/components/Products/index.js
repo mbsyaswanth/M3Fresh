@@ -61,13 +61,19 @@ function Products(props) {
               quantity: cart[product.product_id].quantity - 1,
             },
           });
+          if (cart[product.product_id].quantity === 1) {
+            setCart((prev) => {
+              delete prev[product.product_id];
+              return prev;
+            });
+          }
         }}
       />
     ));
   };
   return (
     <div>
-      <NavBar />
+      <NavBar showCart={true} count={Object.keys(cart).length} />
       <Container>
         <StyledInput
           name={"filterText"}

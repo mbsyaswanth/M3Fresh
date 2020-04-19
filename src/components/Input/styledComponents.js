@@ -14,4 +14,5 @@ export const StyledInput = styled.input`
   font-weight: bold;
   font-family: "Roboto";
   color: #178e1c;
+  -webkit-appearance: none;
 `;
