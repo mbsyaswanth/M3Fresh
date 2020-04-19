@@ -7,6 +7,8 @@ import {
   Price,
   Quantity,
   AddToCart,
+  QuantityButton,
+  QtyCount,
 } from "./styledComponents";
 
 function ItemCard() {
@@ -20,7 +22,10 @@ function ItemCard() {
       <ItemName>Carrot</ItemName>
       <Price>Price : 100/kg</Price>
       <Quantity>
-        Quantity : <input type="number" />
+        Quantity :
+        <QuantityButton onClick={() => setCount(count - 1)}>-</QuantityButton>
+        <QtyCount>{count}</QtyCount>
+        <QuantityButton onClick={() => setCount(count + 1)}>+</QuantityButton>
       </Quantity>
       <AddToCart onClick={() => setCount(count + 1)}>Add To Cart</AddToCart>
     </Container>

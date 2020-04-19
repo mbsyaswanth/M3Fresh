@@ -55,3 +55,31 @@ export const AddToCart = styled.button`
     background-color: #156e1b;
   }
 `;
+
+export const QuantityButton = styled.button`
+  background: #9fd7af;
+  border-radius: 8px;
+  border: none;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 5px 10px;
+  color: #178e1c;
+  :hover {
+    background-color: #8ed6ad;
+  }
+`;
+
+export const QtyCount = styled.span`
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  color: #178e1c;
+  padding: 5px;
+  margin: 0 5px;
+  min-width: 25px;
+`;
