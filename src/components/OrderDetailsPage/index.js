@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import {
-  NavBar,
   OrdersContainer,
   OrdersHeading,
   NextContainer,
@@ -11,6 +10,7 @@ import {
 } from "./styledComponents";
 
 import OrderItem from "./OrderItem";
+import Header from "../Header";
 
 function OrderDetailsPage(props) {
   const [count, setCount] = useState(0);
@@ -19,8 +19,7 @@ function OrderDetailsPage(props) {
   });
   return (
     <>
-      <NavBar>M3Fresh.</NavBar>
-
+    <Header/>
       <OrdersContainer>
         <OrdersHeading>Order Summary</OrdersHeading>
         <OrderItem itemName="Carrot" price="25" count={1} unit="KG" />
