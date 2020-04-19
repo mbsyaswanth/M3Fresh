@@ -42,9 +42,10 @@ function App() {
       .ref("stock")
       .once("value")
       .then((snapshot) => {
+        console.log(snapshot.val());
         dispatch({
           type: "FETCHED",
-          stocks: Object.values(snapshot.val()),
+          stocks: snapshot.val(),
         });
       });
   }, []);

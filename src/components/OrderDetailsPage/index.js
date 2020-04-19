@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 import {
   OrdersContainer,
@@ -11,29 +12,74 @@ import {
 
 import OrderItem from "./OrderItem";
 import Navbar from "../Navbar";
+
+import { StoreContext, CartContext } from "../../App";
 import { goToDeliveryDetailsPage } from "../../utils/RouteUtils";
 
 function OrderDetailsPage(props) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    document.title = `You clicked ${count} times`;
-  });
+  const history = useHistory();
+  const [state, dispatch] = useContext(StoreContext);
+  const [cart, setCart] = useContext(CartContext);
+
+  const getTotalCost = () => {
+    const costArray = Object.values(cart).map(
+      (cartItem) => state.stocks[cartItem.productId].price * cartItem.quantity
+    );
+    return costArray.reduce((total, currentValue) => total + currentValue, 0);
+  };
+
+  console.log(cart);
   return (
     <>
       <Navbar />
       <OrdersContainer>
         <OrdersHeading>Order Summary</OrdersHeading>
-        <OrderItem itemName="Carrot" price="25" count={1} unit="KG" />
-        <OrderItem itemName="Carrot" price="25" count={1} unit="KG" />
-        <OrderItem itemName="Carrot" price="25" count={1} unit="KG" />
-        <OrderItem itemName="Carrot" price="25" count={1} unit="KG" />
-        <OrderItem itemName="Carrot" price="25" count={1} unit="KG" />
+        {Object.values(cart).map((cartItem) => {
+          return (
+            <OrderItem
+              image={state.stocks[cartItem.productId].product_image}
+              itemName={state.stocks[cartItem.productId].product_name}
+              price={state.stocks[cartItem.productId].price}
+              quantity={cartItem.quantity}
+              unit={state.stocks[cartItem.productId].units}
+              increment={() => {
+                setCart({
+                  ...cart,
+                  [cartItem.productId]: {
+                    productId: cartItem.productId,
+                    quantity: cart[cartItem.productId].quantity + 1,
+                  },
+                });
+              }}
+              decrement={() => {
+                setCart({
+                  ...cart,
+                  [cartItem.productId]: {
+                    productId: cartItem.productId,
+                    quantity: cart[cartItem.productId].quantity - 1,
+                  },
+                });
+              }}
+              onDelete={() =>
+                setCart((prev) => {
+                  console.log(prev);
+                  delete prev[cartItem.productId];
+                  console.log("after del", prev);
+
+                  return prev;
+                })
+              }
+            />
+          );
+        })}
       </OrdersContainer>
       <NextContainer>
         <CartTotalHeading>
-          Total: <CartTotal> ₹ 100</CartTotal>
+          Total: <CartTotal> ₹ {getTotalCost()}</CartTotal>
         </CartTotalHeading>
-        <NextButton onClick={() => goToDeliveryDetailsPage()}>Next</NextButton>
+        <NextButton onClick={() => goToDeliveryDetailsPage(history)}>
+          Next
+        </NextButton>
       </NextContainer>
     </>
   );

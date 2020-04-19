@@ -16,12 +16,10 @@ import {
 } from "./styledComponents";
 
 function ItemCard(props) {
-  const [count, setCount] = useState(props.count);
-  //TODO: add order count call back
   return (
     <Container>
-      <Close>x</Close>
-      <Image src={props.imageUrl} alt="item image" />
+      {/* <Close onClick={props.onDelete}>x</Close> */}
+      <Image src={props.image} alt="item image" />
       <DetailsContainer>
         <Details>
           <ItemName>{props.itemName}</ItemName>
@@ -30,18 +28,16 @@ function ItemCard(props) {
           </ItemPrice>
           <QuantityContainer>
             <QuantityButton
-              disabled={count <= 0}
-              onClick={() => setCount(count - 1)}
+              disabled={props.quantity <= 0}
+              onClick={props.decrement}
             >
               -
             </QuantityButton>
-            <QtyCount>{count}</QtyCount>
-            <QuantityButton onClick={() => setCount(count + 1)}>
-              +
-            </QuantityButton>
+            <QtyCount>{props.quantity}</QtyCount>
+            <QuantityButton onClick={props.increment}>+</QuantityButton>
           </QuantityContainer>
         </Details>
-        <Price>₹ {props.price * count}</Price>
+        <Price>₹ {props.price * props.quantity}</Price>
       </DetailsContainer>
     </Container>
   );
