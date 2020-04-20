@@ -11,7 +11,7 @@ import { Container, AddessInput } from "./styledComponents";
 import NavBar from "../Navbar";
 
 function UserDetailForm(props) {
-  const { values, handleChange } = useCustomInputHandler({
+  const [values, handleChange] = useCustomInputHandler({
     userName: "",
     phoneNumber: "",
     address: "",

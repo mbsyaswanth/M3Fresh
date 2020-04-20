@@ -60,15 +60,13 @@ function OrderDetailsPage(props) {
                   },
                 });
               }}
-              onDelete={() =>
+              onDelete={() => {
                 setCart((prev) => {
-                  console.log(prev);
-                  delete prev[cartItem.productId];
-                  console.log("after del", prev);
+                  delete cart[cartItem.productId];
 
-                  return prev;
-                })
-              }
+                  return cart;
+                });
+              }}
             />
           );
         })}

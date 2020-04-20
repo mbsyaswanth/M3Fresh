@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const OrdersContainer = styled.div`
-  padding: 12px 16px;
+  padding: 12px 20px;
   margin: 64px 0px;
 `;
 
@@ -15,6 +15,7 @@ export const OrdersHeading = styled.h3`
   text-align: left;
   color: #178e1c;
   margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
 export const NextContainer = styled.div`
