@@ -18,6 +18,7 @@ function DeliveryDetailsPage() {
       ...userDetails,
       orderId: orderRef.key,
       timeStamp: Date.now(),
+      status: "SUBMITTED",
     };
     setOrderId(orderRef.key);
     setOrderStatus(networkCallStatus.loading);
