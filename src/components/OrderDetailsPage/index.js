@@ -15,6 +15,7 @@ import Navbar from "../Navbar";
 
 import { StoreContext, CartContext } from "../../App";
 import { goToDeliveryDetailsPage } from "../../utils/RouteUtils";
+import { createObjectCopy } from "../../utils/CommonUtils";
 
 function OrderDetailsPage(props) {
   const history = useHistory();
@@ -59,12 +60,19 @@ function OrderDetailsPage(props) {
                     quantity: cart[cartItem.productId].quantity - 1,
                   },
                 });
+                if (cart[cartItem.productId].quantity === 1) {
+                  setCart((prev) => {
+                    const a = createObjectCopy(prev);
+                    delete a[cartItem.productId];
+                    return a;
+                  });
+                }
               }}
               onDelete={() => {
                 setCart((prev) => {
-                  delete cart[cartItem.productId];
-
-                  return cart;
+                  const a = createObjectCopy(prev);
+                  delete a[cartItem.productId];
+                  return a;
                 });
               }}
             />

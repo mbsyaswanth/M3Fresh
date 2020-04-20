@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
 
 import Input from "../Input";
 
@@ -6,9 +9,20 @@ import Button from "../Button";
 
 import useCustomInputHandler from "../../customHooks/useInputHandler";
 
-import { Container, AddessInput } from "./styledComponents";
+import {
+  Container,
+  AddessInput,
+  OrderStatusContainer,
+  OrderStatusHeading,
+  ContactInformation,
+  ViewInvoiceText,
+  PlaceOtherOrderButton,
+} from "./styledComponents";
 
 import NavBar from "../Navbar";
+import OrderReceivedIcon from "../../icons/OrderReceivedIcon";
+import { goToHomePage } from "../../utils/RouteUtils";
+import { networkCallStatus } from "../../utils/CommonUtils";
 
 function UserDetailForm(props) {
   const [values, handleChange] = useCustomInputHandler({
@@ -16,6 +30,8 @@ function UserDetailForm(props) {
     phoneNumber: "",
     address: "",
   });
+
+  const history = useHistory();
 
   const onClickPlaceOrder = () => {
     const obj = {
@@ -26,10 +42,32 @@ function UserDetailForm(props) {
     props.onClickPlaceOrder(obj);
   };
 
-  return (
-    <>
-      <NavBar />
-      <Container>
+  const renderOrderStatus = () => {
+    return (
+      <>
+        <OrderStatusContainer>
+          <OrderStatusHeading>Order Received</OrderStatusHeading>
+          <OrderReceivedIcon />
+          <ContactInformation>
+            Please contact <b>9553050607</b> or <b>08542-252203</b> for any
+            queries
+          </ContactInformation>
+          <ViewInvoiceText>
+            <Link to={`invoice-details/${props.orderId}`}>Click here</Link>
+            to view your Order Invoice.
+          </ViewInvoiceText>
+        </OrderStatusContainer>
+
+        <PlaceOtherOrderButton onClick={() => goToHomePage(history)}>
+          Place Another Order
+        </PlaceOtherOrderButton>
+      </>
+    );
+  };
+
+  const renderPlaceOrder = () => {
+    return (
+      <>
         <Input
           name={"userName"}
           value={values.userName}
@@ -49,7 +87,22 @@ function UserDetailForm(props) {
           placeholder={"Address"}
         />
 
-        <Button text={"Place Order"} onClick={onClickPlaceOrder} />
+        {props.orderStatus === networkCallStatus.loading ? (
+          <BeatLoader size={10} margin={5} color={"#178e1c"} />
+        ) : (
+          <Button text={"Place Order"} onClick={onClickPlaceOrder} />
+        )}
+      </>
+    );
+  };
+
+  return (
+    <>
+      <NavBar />
+      <Container>
+        {props.orderStatus === networkCallStatus.success
+          ? renderOrderStatus()
+          : renderPlaceOrder()}
       </Container>
     </>
   );

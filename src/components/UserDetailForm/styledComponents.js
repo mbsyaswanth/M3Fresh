@@ -28,3 +28,63 @@ export const AddessInput = styled.textarea`
   box-shadow: 0px 0px 2px 1px #178e1c;
   color: #178e1c;
 `;
+
+export const OrderStatusContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 268px;
+  padding: 10px 5px;
+  background: #d7e5d0;
+  border-radius: 20px 0px;
+  box-sizing: border-box;
+`;
+
+export const OrderStatusHeading = styled.h3`
+  margin: 0;
+  margin-bottom: 10px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  color: #1f5721;
+`;
+
+export const ContactInformation = styled.p`
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #178e1c;
+  margin: 10px 0;
+  text-align: center;
+`;
+
+export const ViewInvoiceText = styled.p`
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #1f5721;
+`;
+
+export const PlaceOtherOrderButton = styled.button`
+  margin-top: 30px;
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+  background-color: #178e1c;
+  padding: 10px 15px;
+  border-radius: 23px;
+  border: none;
+  :hover {
+    background-color: #156e1b;
+  }
+`;

@@ -5,6 +5,7 @@ import HomePage from "./HomePage";
 import ProductsPage from "./ProductsPage";
 import CartSummaryPage from "./CartSummaryPage";
 import DeliveryDetailsPage from "./DeliveryDetailsPage";
+import InvoiceDetailsPage from "./InvoiceDetailsPage";
 
 export const Routes = () => {
   return (

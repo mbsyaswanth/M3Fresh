@@ -18,7 +18,7 @@ import {
 function ItemCard(props) {
   return (
     <Container>
-      {/* <Close onClick={props.onDelete}>x</Close> */}
+      <Close onClick={props.onDelete}>x</Close>
       <Image src={props.image} alt="item image" />
       <DetailsContainer>
         <Details>
