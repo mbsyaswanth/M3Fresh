@@ -11,6 +11,12 @@ export const ProductsContainer = styled.div`
   @media only screen and (max-width: 400px) {
     grid-template-columns: repeat(auto-fit, minmax(130px, 160px));
   }
+
+  
+
+  @media only screen and (min-width: 350px) and (max-width: 767px) {
+    padding-bottom:30%;
+  }
 `;
 
 export const StyledInput = styled(Input)`

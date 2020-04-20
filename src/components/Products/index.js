@@ -98,9 +98,9 @@ function Products(props) {
       </Container>
 
       {/* TODO: need to add this button */}
-      {/* <GoToCart onClick={() => goToCartSummaryPage(history)}>
+      {Object.keys(cart).length>0 && <GoToCart onClick={() => goToCartSummaryPage(history)}>
         Go To Cart
-      </GoToCart> */}
+      </GoToCart>}
     </div>
   );
 }

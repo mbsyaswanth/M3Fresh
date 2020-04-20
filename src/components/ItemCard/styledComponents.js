@@ -8,6 +8,8 @@ export const Container = styled.div`
   box-shadow: 0px 0px 4px rgba(23, 142, 28, 0.36),
     0px 0px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
+
+  
 `;
 
 export const Image = styled.img`
