@@ -60,6 +60,13 @@ function OrderDetailsPage(props) {
                     quantity: cart[cartItem.productId].quantity - 1,
                   },
                 });
+                if (cart[cartItem.productId].quantity === 1) {
+                  setCart((prev) => {
+                    const a = createObjectCopy(prev);
+                    delete a[cartItem.productId];
+                    return a;
+                  });
+                }
               }}
               onDelete={() => {
                 setCart((prev) => {

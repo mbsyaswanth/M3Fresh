@@ -87,6 +87,7 @@ export const QtyCount = styled.span`
   padding: 5px;
   margin: 0 5px;
   min-width: 25px;
+  text-align: center;
 `;
 
 export const QuantityContainer = styled.div`
@@ -95,8 +96,8 @@ export const QuantityContainer = styled.div`
 
 export const Close = styled.button`
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 8px;
+  right: 8px;
   font-family: Rubik;
   font-style: normal;
   font-weight: bold;
