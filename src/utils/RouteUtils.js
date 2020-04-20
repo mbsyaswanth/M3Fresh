@@ -14,3 +14,7 @@ export const goToCartSummaryPage=(history)=>{
 export const goToDeliveryDetailsPage=(history)=>{
     history.push('/delivery-details')
 }
+
+export const goToInvoiceDetailsPage =(history)=>{
+    history.push('/order-invoice')
+}
