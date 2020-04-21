@@ -6,8 +6,7 @@ export const StyledNavBarContainer = styled.div`
   font-family: Rubik;
   font-style: normal;
   font-weight: bold;
-  font-size: 37px;
-  line-height: 44px;
+  font-size: 33px;
   color: #178e1c;
   text-align: left;
   position: fixed;

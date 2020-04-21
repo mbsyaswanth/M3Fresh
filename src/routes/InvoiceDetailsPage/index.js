@@ -5,6 +5,7 @@ import firebase from "firebase";
 import InvoiceDetails from "../../components/InvoiceDetails";
 import { getFormattedDate } from "../../utils/DateUtils";
 import { StoreContext } from "../../App";
+import { renderLoader } from "../../components/Products";
 
 function InvoiceDetailsPage(props) {
   const [orderResponse, setOrderResponse] = useState("");
@@ -27,8 +28,7 @@ function InvoiceDetailsPage(props) {
     );
     return costArray.reduce((total, currentValue) => total + currentValue, 0);
   };
-
-  if (orderResponse && state.stocks) {
+  if (state.loading === 200 && orderResponse) {
     var dateObj = new Date(orderResponse.timeStamp);
     var date = getFormattedDate(dateObj);
     const order = {
@@ -52,7 +52,7 @@ function InvoiceDetailsPage(props) {
       </div>
     );
   }
-  return null;
+  return renderLoader();
 }
 
 export default InvoiceDetailsPage;

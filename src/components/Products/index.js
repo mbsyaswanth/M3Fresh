@@ -17,6 +17,14 @@ import {
   LoaderContainer,
 } from "./styledComponents";
 
+export const renderLoader = () => {
+  return (
+    <LoaderContainer>
+      <SyncLoader size={7} margin={1} color={"#178e1c"} />
+    </LoaderContainer>
+  );
+};
+
 function Products(props) {
   const history = useHistory();
   const [state, dispatch] = useContext(StoreContext);
@@ -74,14 +82,6 @@ function Products(props) {
     ));
   };
 
-  const renderLoader = () => {
-    return (
-      <LoaderContainer>
-        <SyncLoader size={7} margin={1} color={"#178e1c"} />
-      </LoaderContainer>
-    );
-  };
-
   return (
     <div>
       <NavBar showCart={true} count={Object.keys(cart).length} />
@@ -98,9 +98,11 @@ function Products(props) {
       </Container>
 
       {/* TODO: need to add this button */}
-      {Object.keys(cart).length>0 && <GoToCart onClick={() => goToCartSummaryPage(history)}>
-        Go To Cart
-      </GoToCart>}
+      {Object.keys(cart).length > 0 && (
+        <GoToCart onClick={() => goToCartSummaryPage(history)}>
+          Go To Cart
+        </GoToCart>
+      )}
     </div>
   );
 }

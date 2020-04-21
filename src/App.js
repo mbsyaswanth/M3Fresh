@@ -5,6 +5,8 @@ import "./App.css";
 import { initFirebase } from "./firebase";
 import { Routes } from "./routes";
 
+initFirebase();
+
 export const StoreContext = createContext();
 
 export const CartContext = createContext();
@@ -35,7 +37,6 @@ function App() {
   const cart = useState({});
 
   useEffect(() => {
-    initFirebase();
     dispatch({ type: "FETCHING" });
     firbase
       .database()
