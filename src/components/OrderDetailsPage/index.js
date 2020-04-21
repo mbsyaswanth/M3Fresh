@@ -84,7 +84,7 @@ function OrderDetailsPage(props) {
           Total: <CartTotal> ₹ {getTotalCost()}</CartTotal>
         </CartTotalHeading>
         <NextButton onClick={() => goToDeliveryDetailsPage(history)}>
-          Next
+          Continue
         </NextButton>
       </NextContainer>
     </>
