@@ -15,5 +15,5 @@ export const goToDeliveryDetailsPage = (history) => {
 };
 
 export const goToInvoiceDetailsPage = (history, orderId) => {
-  history.push(`/order-invoice/${orderId}`);
+  history.push(`/invoice-details/${orderId}`);
 };

@@ -79,14 +79,16 @@ function OrderDetailsPage(props) {
           );
         })}
       </OrdersContainer>
-      <NextContainer>
-        <CartTotalHeading>
-          Total: <CartTotal> ₹ {getTotalCost()}</CartTotal>
-        </CartTotalHeading>
-        <NextButton onClick={() => goToDeliveryDetailsPage(history)}>
-          Continue
-        </NextButton>
-      </NextContainer>
+      {Object.values(cart).length > 0 && (
+        <NextContainer>
+          <CartTotalHeading>
+            Total: <CartTotal> ₹ {getTotalCost()}</CartTotal>
+          </CartTotalHeading>
+          <NextButton onClick={() => goToDeliveryDetailsPage(history)}>
+            Continue
+          </NextButton>
+        </NextContainer>
+      )}
     </>
   );
 }

@@ -30,15 +30,14 @@ function Orders(props) {
       <OrdersHeading>Orders</OrdersHeading>
       {Object.values(orders).map((eachOrder) => (
         <SingleOrder
-          username={eachOrder.username}
+          username={eachOrder.userName}
           orderId={eachOrder.orderId}
           phoneNumber={eachOrder.phone_number}
-          formatedDateTime={eachOrder.timeStamp}
+          formatedDateTime={getFormattedDate(new Date(eachOrder.timeStamp))}
         />
       ))}
     </OrdersContainer>
   );
-
   return (
     <>
       <Navbar count={0} />
