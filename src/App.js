@@ -5,6 +5,8 @@ import "./App.css";
 import { initFirebase } from "./firebase";
 import { Routes } from "./routes";
 
+import { storeStocks } from "./Store";
+
 initFirebase();
 
 export const StoreContext = createContext();
@@ -16,20 +18,6 @@ const initialStocks = {
   cart: {},
   loading: 100,
 };
-
-function storeStocks(state, action) {
-  switch (action.type) {
-    case "FETCHED":
-      return { ...state, stocks: action.stocks, loading: 200 };
-    case "FETCHING":
-      return { ...state, loading: 300 };
-    case "ADD_ITEM":
-      state.cart[action.cartItem.productId] = action.cartItem;
-      return state;
-    default:
-      return state;
-  }
-}
 
 function App() {
   const store = useReducer(storeStocks, initialStocks);

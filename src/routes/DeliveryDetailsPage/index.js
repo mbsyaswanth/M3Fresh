@@ -1,20 +1,19 @@
 import React, { useContext, useState } from "react";
 import firebase from "firebase";
 
-import { StoreContext, CartContext } from "../../App";
+import { StoreContext } from "../../App";
 import UserDetailForm from "../../components/UserDetailForm";
 import { networkCallStatus } from "../../utils/CommonUtils";
 
 function DeliveryDetailsPage() {
-  const [state, dispatch] = useContext(StoreContext);
-  const [cart, setCart] = useContext(CartContext);
+  const [state] = useContext(StoreContext);
   const [orderStatus, setOrderStatus] = useState(networkCallStatus.initial);
   const [orderId, setOrderId] = useState("");
   const sendOrderToFirebase = (userDetails) => {
     const baseOrdersReference = firebase.database().ref("orders");
     const orderRef = baseOrdersReference.push();
     const order = {
-      cart: cart,
+      cart: state.cart,
       ...userDetails,
       orderId: orderRef.key,
       timeStamp: Date.now(),
