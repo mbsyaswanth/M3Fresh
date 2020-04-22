@@ -18,7 +18,10 @@ function SingleOrder(props) {
       <OrderDetailsContainer>
         <OrderUser>{props.username}</OrderUser>
         <OrderDetailsText>OrderId: {props.orderId}</OrderDetailsText>
-        <OrderDetailsText>Phone: {props.phoneNumber}</OrderDetailsText>
+        <OrderDetailsText>
+          Phone:
+          <a href={`tel:+91 ${props.phoneNumber}`}>{props.phoneNumber}</a>
+        </OrderDetailsText>
         <OrderDetailsText>
           Order placed at{" "}
           <OrderMediumText>{props.formatedDateTime}</OrderMediumText>

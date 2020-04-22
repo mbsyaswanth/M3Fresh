@@ -49,8 +49,11 @@ function UserDetailForm(props) {
           <OrderStatusHeading>Order Received</OrderStatusHeading>
           <OrderReceivedIcon />
           <ContactInformation>
-            Please contact <b>9553050607</b> or <b>08542-252203</b> for any
-            queries
+            Please contact{" "}
+            <b>
+              <a href={`tel:+91 9553050607`}>9553050607</a>
+            </b>{" "}
+            or <b>08542-252203</b> for any queries
           </ContactInformation>
           <ViewInvoiceText>
             <Link to={`invoice-details/${props.orderId}`}>Click here</Link>
