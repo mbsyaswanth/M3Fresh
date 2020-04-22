@@ -2,13 +2,15 @@ import firebase from "firebase";
 
 export const initFirebase = () => {
   const firebaseConfig = {
-    apiKey: "AIzaSyDwTME7BacgmrUZLdMZsRuNZcnaamvkVMY",
-    authDomain: "m3fresh-1a6c8.firebaseapp.com",
-    databaseURL: "https://m3fresh-1a6c8.firebaseio.com",
-    projectId: "m3fresh-1a6c8",
-    storageBucket: "m3fresh-1a6c8.appspot.com",
-    messagingSenderId: "628582672709",
-    appId: "1:628582672709:web:e30f2011181c84482c762c",
+    apiKey: process.env.AIzaSyDwTME7BacgmrUZLdMZsRuNZcnaamvkVMY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
   };
-  return firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
+  // firebase.analytics();
 };

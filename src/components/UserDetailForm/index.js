@@ -68,22 +68,33 @@ function UserDetailForm(props) {
     );
   };
 
+  const formSubmit = (event) => {
+    event.preventDefault();
+    onClickPlaceOrder();
+  };
+
   const renderPlaceOrder = () => {
     return (
-      <>
+      <form onSubmit={formSubmit}>
         <Input
+          required
+          type="text"
           name={"userName"}
           value={values.userName}
           onChange={handleChange}
           placeholder={"Full Name"}
         />
         <Input
+          required
+          type="tel"
           name={"phoneNumber"}
           value={values.phoneNumber}
           onChange={handleChange}
           placeholder={"Mobile Number"}
         />
         <AddessInput
+          required
+          type="text"
           name={"address"}
           value={values.address}
           onChange={handleChange}
@@ -93,9 +104,9 @@ function UserDetailForm(props) {
         {props.orderStatus === networkCallStatus.loading ? (
           <BeatLoader size={10} margin={5} color={"#178e1c"} />
         ) : (
-          <Button text={"Place Order"} onClick={onClickPlaceOrder} />
+          <Button type="submit" text={"Place Order"} />
         )}
-      </>
+      </form>
     );
   };
 

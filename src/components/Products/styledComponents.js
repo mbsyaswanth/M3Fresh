@@ -4,18 +4,25 @@ import Input from "../Input";
 
 export const ProductsContainer = styled.div`
   display: grid;
-  grid-gap: 3%;
+  grid-gap: 15px;
   grid-template-columns: repeat(auto-fit, minmax(160px, 180px));
   justify-content: center;
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 371px) {
+    grid-gap: 10px;
+  }
+
+  @media only screen and (max-width: 410px) {
     grid-template-columns: repeat(auto-fit, minmax(130px, 160px));
   }
 
-  
-
   @media only screen and (min-width: 350px) and (max-width: 767px) {
-    padding-bottom:30%;
+    padding-bottom: 30%;
+  }
+
+  @media only screen and (min-width: 530px) {
+    margin: 0 10%;
+    grid-gap: 30px;
   }
 `;
 
@@ -59,7 +66,7 @@ export const GoToCart = styled.button`
 `;
 
 export const LoaderContainer = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;

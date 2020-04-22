@@ -18,6 +18,10 @@ export const Image = styled.img`
 
 export const ItemDetailsContainer = styled.span`
   padding: 8px 5px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-evenly;
 `;
 
 export const ItemName = styled.div`

@@ -80,6 +80,7 @@ function Products(props) {
       <NavBar showCart={true} count={Object.keys(state.cart).length} />
       <Container>
         <StyledInput
+          type="search"
           name={"filterText"}
           onChange={handleChange}
           value={values.filterText}
