@@ -20,8 +20,8 @@ import Navbar from "../Navbar";
 function InvoiceDetails(props) {
   const renderEachItemDetails = () => {
     return props.orderDetails.items.map((item, index) => (
-      <Item isFirst={index === 0}>
-        <ItemName>{`${item.name}  x  ${item.quantity}`}</ItemName>
+      <Item isFirst={index === 0} key={`${item}+${index}`}>
+        <ItemName>{`${item.name}  x  ${item.quantity} (${item.units})`}</ItemName>
         <ItemPrice>{item.price}</ItemPrice>
       </Item>
     ));
