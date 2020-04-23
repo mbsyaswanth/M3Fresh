@@ -15,7 +15,7 @@ import {
   PrintInvoiceButton,
   DateAndTime,
 } from "./styledComponents";
-import Navbar from "../Navbar";
+import Header from "../Header";
 
 function InvoiceDetails(props) {
   const renderEachItemDetails = () => {
@@ -28,7 +28,7 @@ function InvoiceDetails(props) {
   };
   return (
     <InvoiceDetailsContainer>
-      <Navbar />
+      <Header />
       <InvoiceContainer>
         <OderId>{`ORDER#${props.orderDetails.orderId}`}</OderId>
         <DateAndTime>{`Order was placed on ${props.orderDetails.date}`}</DateAndTime>
