@@ -41,6 +41,7 @@ function InvoiceDetailsPage(props) {
           name: state.stocks[item.productId].product_name,
           quantity: item.quantity,
           price: state.stocks[item.productId].price,
+          units: state.stocks[item.productId].units,
         };
       }),
       totalPrice: getTotalCost(),

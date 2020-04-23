@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { SyncLoader } from "react-spinners";
 import { useHistory } from "react-router-dom";
 
@@ -37,51 +37,52 @@ function Products(props) {
   };
   const renderProductsList = () => {
     const filteredProducts = getFilteredProducts();
-    return filteredProducts.map((product) => (
-      <ItemCard
-        key={product.product_id}
-        name={product.product_name}
-        image={product.product_image}
-        price={product.price}
-        units={product.units}
-        quantity={cart[product.product_id]?.quantity}
-        onAdd={() => {
-          setCart({
-            ...cart,
-            [product.product_id]: {
-              productId: product.product_id,
-              quantity: 1,
-            },
-          });
-        }}
-        increment={() => {
-          setCart({
-            ...cart,
-            [product.product_id]: {
-              productId: product.product_id,
-              quantity: cart[product.product_id].quantity + 1,
-            },
-          });
-        }}
-        decrement={() => {
-          setCart({
-            ...cart,
-            [product.product_id]: {
-              productId: product.product_id,
-              quantity: cart[product.product_id].quantity - 1,
-            },
-          });
-          if (cart[product.product_id].quantity === 1) {
-            setCart((prev) => {
-              delete prev[product.product_id];
-              return prev;
+    return filteredProducts
+      .sort((a, b) => a.productId < b.productId)
+      .map((product) => (
+        <ItemCard
+          key={product.product_id}
+          name={product.product_name}
+          image={product.product_image}
+          price={product.price}
+          units={product.units}
+          quantity={cart[product.product_id]?.quantity}
+          onAdd={() => {
+            setCart({
+              ...cart,
+              [product.product_id]: {
+                productId: product.product_id,
+                quantity: 1,
+              },
             });
-          }
-        }}
-      />
-    ));
+          }}
+          increment={() => {
+            setCart({
+              ...cart,
+              [product.product_id]: {
+                productId: product.product_id,
+                quantity: cart[product.product_id].quantity + 1,
+              },
+            });
+          }}
+          decrement={() => {
+            setCart({
+              ...cart,
+              [product.product_id]: {
+                productId: product.product_id,
+                quantity: cart[product.product_id].quantity - 1,
+              },
+            });
+            if (cart[product.product_id].quantity === 1) {
+              setCart((prev) => {
+                delete prev[product.product_id];
+                return prev;
+              });
+            }
+          }}
+        />
+      ));
   };
-
   return (
     <div>
       <NavBar showCart={true} count={Object.keys(cart).length} />
