@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { SyncLoader } from "react-spinners";
 import { useHistory } from "react-router-dom";
 
@@ -15,7 +15,10 @@ import {
   Container,
   GoToCart,
   LoaderContainer,
+  SearchFilters,
 } from "./styledComponents";
+import SearchFilter from "../SearchFilter";
+import { productFilters } from "./constants";
 
 export const renderLoader = () => {
   return (
@@ -27,18 +30,34 @@ export const renderLoader = () => {
 
 function Products(props) {
   const history = useHistory();
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const [state, dispatch] = useContext(StoreContext);
   const [cart, setCart] = useContext(CartContext);
   const [values, handleChange] = useCustomInputHandler({ filterText: "" });
+
   const getFilteredProducts = () => {
-    return Object.values(state.stocks).filter((stock) =>
-      stock.product_name.toLowerCase().includes(values.filterText.toLowerCase())
-    );
+    return Object.values(state.stocks).filter((stock) => {
+      if (selectedFilters.length === 0) {
+        return stock.product_name
+          .toLowerCase()
+          .includes(values.filterText.toLowerCase());
+      } else {
+        return (
+          selectedFilters.includes(
+            productFilters[stock.product_id.charAt(0).toLowerCase()]
+          ) &&
+          stock.product_name
+            .toLowerCase()
+            .includes(values.filterText.toLowerCase())
+        );
+      }
+    });
   };
+
   const renderProductsList = () => {
     const filteredProducts = getFilteredProducts();
     return filteredProducts
-      .sort((a, b) => a.productId < b.productId)
+      .sort((a, b) => a.product_id < b.product_id)
       .map((product) => (
         <ItemCard
           key={product.product_id}
@@ -83,9 +102,30 @@ function Products(props) {
         />
       ));
   };
+
+  const onClickFilter = (filter) => {
+    const filters = [...selectedFilters];
+    if (filters.indexOf(filter) > -1) {
+      filters.splice(filters.indexOf(filter), 1);
+    } else {
+      filters.push(filter);
+    }
+    setSelectedFilters(filters);
+  };
+
   return (
     <div>
       <NavBar showCart={true} count={Object.keys(cart).length} />
+      <SearchFilters>
+        {Object.values(productFilters).map((filter) => (
+          <SearchFilter
+            key={filter}
+            onClick={() => onClickFilter(filter)}
+            isSelected={selectedFilters.includes(filter)}
+            text={filter}
+          />
+        ))}
+      </SearchFilters>
       <Container>
         <StyledInput
           type="search"
