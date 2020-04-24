@@ -13,4 +13,5 @@ export const FilterContainer = styled.div`
   border-radius: 16px;
   color: #178e1e;
   margin: 0px 5px;
+  cursor: pointer;
 `;
