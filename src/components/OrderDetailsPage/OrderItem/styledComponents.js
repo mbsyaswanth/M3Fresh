@@ -11,6 +11,7 @@ export const Container = styled.div`
 export const Image = styled.img`
   width: 94px;
   margin-right: 25px;
+  object-fit: cover;
 `;
 
 export const DetailsContainer = styled.div`

@@ -84,6 +84,9 @@ export const PrintInvoiceButton = styled(Button)`
   font-weight: 600;
   font-size: 15px;
   line-height: 19px;
+  @media print {
+    display: none;
+  }
 `;
 
 export const DateAndTime = styled(ItemName)`
