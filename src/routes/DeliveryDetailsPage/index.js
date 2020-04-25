@@ -17,6 +17,14 @@ function DeliveryDetailsPage() {
       cart: cart,
       ...userDetails,
       orderId: orderRef.key,
+      orderedProductDetails: Object.values(cart).map((item) => {
+        return {
+          name: state.stocks[item.productId].product_name,
+          quantity: item.quantity,
+          price: state.stocks[item.productId].price,
+          units: state.stocks[item.productId].units,
+        };
+      }),
       timeStamp: Date.now(),
       status: "SUBMITTED",
     };
