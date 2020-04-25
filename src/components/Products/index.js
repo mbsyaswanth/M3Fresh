@@ -15,7 +15,10 @@ import {
   Container,
   GoToCart,
   LoaderContainer,
+  SearchFilters,
 } from "./styledComponents";
+import SearchFilter from "../SearchFilter";
+import { productFilters } from "./constants";
 
 export const renderLoader = () => {
   return (
@@ -27,57 +30,95 @@ export const renderLoader = () => {
 
 function Products(props) {
   const history = useHistory();
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const [state, dispatch] = useContext(StoreContext);
   const [values, handleChange] = useCustomInputHandler({ filterText: "" });
+
   const getFilteredProducts = () => {
-    return Object.values(state.stocks).filter((stock) =>
-      stock.product_name.toLowerCase().includes(values.filterText.toLowerCase())
-    );
+    return Object.values(state.stocks).filter((stock) => {
+      if (selectedFilters.length === 0) {
+        return stock.product_name
+          .toLowerCase()
+          .includes(values.filterText.toLowerCase());
+      } else {
+        return (
+          selectedFilters.includes(
+            productFilters[stock.product_id.charAt(0).toLowerCase()]
+          ) &&
+          stock.product_name
+            .toLowerCase()
+            .includes(values.filterText.toLowerCase())
+        );
+      }
+    });
   };
+
   const renderProductsList = () => {
     const filteredProducts = getFilteredProducts();
-    return filteredProducts.map((product) => (
-      <ItemCard
-        key={product.product_id}
-        name={product.product_name}
-        image={product.product_image}
-        price={product.price}
-        units={product.units}
-        quantity={state.cart[product.product_id]?.quantity}
-        onAdd={() => {
-          dispatch({
-            type: "ADD_ITEM",
-            cartItem: {
-              productId: product.product_id,
-              quantity: 1,
-            },
-          });
-        }}
-        increment={() => {
-          dispatch({
-            type: "INCREMENT_CART_ITEM",
-            productId: product.product_id,
-          });
-        }}
-        decrement={() => {
-          dispatch({
-            type: "DECREMENT_CART_ITEM",
-            productId: product.product_id,
-          });
-          if (state.cart[product.product_id].quantity === 1) {
+    return filteredProducts
+      .sort((a, b) => a.product_id < b.product_id)
+      .map((product) => (
+        <ItemCard
+          key={product.product_id}
+          name={product.product_name}
+          image={product.product_image}
+          price={product.price}
+          units={product.units}
+          quantity={state.cart[product.product_id]?.quantity}
+          onAdd={() => {
             dispatch({
-              type: "DELETE_CART_ITEM",
+              type: "ADD_ITEM",
+              cartItem: {
+                productId: product.product_id,
+                quantity: 1,
+              },
+            });
+          }}
+          increment={() => {
+            dispatch({
+              type: "INCREMENT_CART_ITEM",
               productId: product.product_id,
             });
-          }
-        }}
-      />
-    ));
+          }}
+          decrement={() => {
+            dispatch({
+              type: "DECREMENT_CART_ITEM",
+              productId: product.product_id,
+            });
+            if (state.cart[product.product_id].quantity === 1) {
+              dispatch({
+                type: "DELETE_CART_ITEM",
+                productId: product.product_id,
+              });
+            }
+          }}
+        />
+      ));
+  };
+
+  const onClickFilter = (filter) => {
+    const filters = [...selectedFilters];
+    if (filters.indexOf(filter) > -1) {
+      filters.splice(filters.indexOf(filter), 1);
+    } else {
+      filters.push(filter);
+    }
+    setSelectedFilters(filters);
   };
 
   return (
     <div>
       <NavBar showCart={true} count={Object.keys(state.cart).length} />
+      <SearchFilters>
+        {Object.values(productFilters).map((filter) => (
+          <SearchFilter
+            key={filter}
+            onClick={() => onClickFilter(filter)}
+            isSelected={selectedFilters.includes(filter)}
+            text={filter}
+          />
+        ))}
+      </SearchFilters>
       <Container>
         <StyledInput
           type="search"

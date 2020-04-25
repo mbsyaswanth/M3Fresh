@@ -28,16 +28,16 @@ export const ProductsContainer = styled.div`
 
 export const StyledInput = styled(Input)`
   position: sticky;
-  top: 95px;
+  top: 120px;
   width: 300px;
   margin: 0 auto;
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: 20px;
 `;
 
 export const Container = styled.div`
   padding: 10px;
-  padding-top: 85px;
+  padding-top: 15px;
   padding-bottom: 50px;
   display: flex;
   flex-direction: column;
@@ -69,4 +69,20 @@ export const LoaderContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
+`;
+
+export const SearchFilters = styled.div`
+  position: sticky;
+  top: 59px;
+  background: #f8fcf4;
+  margin-top: 59px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 15px 8px 10px 8px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;

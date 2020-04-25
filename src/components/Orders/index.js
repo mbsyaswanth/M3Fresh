@@ -28,15 +28,18 @@ function Orders(props) {
   const renderOrders = () => (
     <OrdersContainer>
       <OrdersHeading>Orders</OrdersHeading>
-      {Object.values(orders).map((eachOrder) => (
-        <SingleOrder
-          status={eachOrder.status}
-          username={eachOrder.userName}
-          orderId={eachOrder.orderId}
-          phoneNumber={eachOrder.phone_number}
-          formatedDateTime={getFormattedDate(new Date(eachOrder.timeStamp))}
-        />
-      ))}
+      {Object.values(orders)
+        .reverse()
+        .map((eachOrder) => (
+          <SingleOrder
+            key={eachOrder.orderId}
+            status={eachOrder.status}
+            username={eachOrder.userName}
+            orderId={eachOrder.orderId}
+            phoneNumber={eachOrder.phone_number}
+            formatedDateTime={getFormattedDate(new Date(eachOrder.timeStamp))}
+          />
+        ))}
     </OrdersContainer>
   );
   return (

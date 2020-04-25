@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   background: #d7e6d0;
   padding: 15px 10px;
-  max-height: 118px;
   box-shadow: 0px -1px 0px #178e1c, 0px 1px 0px #178e1c;
   display: flex;
   position: relative;
@@ -12,6 +11,7 @@ export const Container = styled.div`
 export const Image = styled.img`
   width: 94px;
   margin-right: 25px;
+  object-fit: cover;
 `;
 
 export const DetailsContainer = styled.div`
