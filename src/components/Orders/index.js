@@ -30,6 +30,7 @@ function Orders(props) {
       <OrdersHeading>Orders</OrdersHeading>
       {Object.values(orders).map((eachOrder) => (
         <SingleOrder
+          status={eachOrder.status}
           username={eachOrder.userName}
           orderId={eachOrder.orderId}
           phoneNumber={eachOrder.phone_number}

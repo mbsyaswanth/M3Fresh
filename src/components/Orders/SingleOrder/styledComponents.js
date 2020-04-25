@@ -52,3 +52,11 @@ export const ViewOrderButton = styled.button`
     background-color: #156e1b;
   }
 `;
+
+export const MarkAsDelivered = styled(ViewOrderButton)`
+  margin-right: 10px;
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+`;
