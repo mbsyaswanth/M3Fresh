@@ -7,6 +7,7 @@ import {
   FightCorona,
   LabelText,
   LabelsContainer,
+  Tagline,
 } from "./styledComponents";
 
 function Header(props) {
@@ -16,6 +17,7 @@ function Header(props) {
         <M3>M3</M3>
         Fresh.
       </TitleContainer>
+      <Tagline>You stay Home, We work for You!</Tagline>
       <LabelsContainer>
         <LabelText>#Mahbubnagar</LabelText>
         <LabelText>#MCRHRD</LabelText>
