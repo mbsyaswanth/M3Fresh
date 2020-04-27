@@ -13,7 +13,7 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const AddessInput = styled.textarea`
+export const AddressInput = styled.textarea`
   width: 100%;
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -27,7 +27,11 @@ export const AddessInput = styled.textarea`
   font-family: "Roboto";
   box-shadow: 0px 0px 2px 1px #178e1c;
   color: #178e1c;
+  -webkit-appearance: none;
+  vertical-align: top;
 `;
+
+export const RemarksInput = styled(AddressInput)``;
 
 export const OrderStatusContainer = styled.div`
   display: flex;

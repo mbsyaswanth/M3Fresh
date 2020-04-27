@@ -24,7 +24,6 @@ function Orders(props) {
       });
   }, []);
 
-  //TODO: change this date to formated
   const renderOrders = () => (
     <OrdersContainer>
       <OrdersHeading>Orders</OrdersHeading>
@@ -43,7 +42,7 @@ function Orders(props) {
   );
   return (
     <>
-      <Navbar count={0} />
+      <Navbar count={0} heading={"M3Fresh."} hideBack={true} />
       {loadingStatus === networkCallStatus.success
         ? renderOrders()
         : renderLoader()}

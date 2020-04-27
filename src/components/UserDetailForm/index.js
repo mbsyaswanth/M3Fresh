@@ -11,12 +11,13 @@ import useCustomInputHandler from "../../customHooks/useInputHandler";
 
 import {
   Container,
-  AddessInput,
+  AddressInput,
   OrderStatusContainer,
   OrderStatusHeading,
   ContactInformation,
   ViewInvoiceText,
   PlaceOtherOrderButton,
+  RemarksInput,
 } from "./styledComponents";
 
 import NavBar from "../Navbar";
@@ -29,6 +30,7 @@ function UserDetailForm(props) {
     userName: "",
     phoneNumber: "",
     address: "",
+    remarks: "",
   });
 
   const history = useHistory();
@@ -38,6 +40,7 @@ function UserDetailForm(props) {
       userName: values.userName,
       phone_number: values.phoneNumber,
       address: values.address,
+      remarks: values.remarks,
     };
     props.onClickPlaceOrder(obj);
   };
@@ -75,7 +78,7 @@ function UserDetailForm(props) {
 
   const renderPlaceOrder = () => {
     return (
-      <form onSubmit={formSubmit}>
+      <form onSubmit={formSubmit} name="Delivery Details" data-netlify="true">
         <Input
           required
           type="text"
@@ -92,13 +95,20 @@ function UserDetailForm(props) {
           onChange={handleChange}
           placeholder={"Mobile Number"}
         />
-        <AddessInput
+        <AddressInput
           required
           type="text"
           name={"address"}
           value={values.address}
           onChange={handleChange}
           placeholder={"Address"}
+        />
+        <RemarksInput
+          type="text"
+          name={"remarks"}
+          value={values.remarks}
+          onChange={handleChange}
+          placeholder={"Remarks"}
         />
 
         {props.orderStatus === networkCallStatus.loading ? (
@@ -112,7 +122,7 @@ function UserDetailForm(props) {
 
   return (
     <>
-      <NavBar />
+      <NavBar heading={"Delivery Details"} />
       <Container>
         {props.orderStatus === networkCallStatus.success
           ? renderOrderStatus()

@@ -32,9 +32,8 @@ function OrderDetailsPage(props) {
   console.log(cart);
   return (
     <>
-      <Navbar />
+      <Navbar heading={"Order Summary"} />
       <OrdersContainer>
-        <OrdersHeading>Order Summary</OrdersHeading>
         {Object.values(cart).map((cartItem) => {
           return (
             <OrderItem

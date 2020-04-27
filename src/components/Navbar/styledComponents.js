@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const StyledNavBarContainer = styled.div`
   background: #d7e6d0;
-  padding: 10px 16px;
+  padding: 0px 16px;
+  height: 59px;
   font-family: Rubik;
   font-style: normal;
   font-weight: bold;
-  font-size: 33px;
+  font-size: 20px;
   color: #178e1c;
   text-align: left;
   position: fixed;
@@ -17,9 +18,10 @@ export const StyledNavBarContainer = styled.div`
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
+  align-items: center;
 `;
 
-export const Badge = styled.div`
+export const Badge = styled.span`
   background-color: orange;
   width: 11px;
   color: #fff;
@@ -34,7 +36,18 @@ export const Badge = styled.div`
   border-radius: 50%;
 `;
 
-export const CartIconContainer = styled.div`
-  align-self: flex-end;
+export const CartIconContainer = styled.span`
+  display: flex;
+  align-items: center;
   position: relative;
+`;
+
+export const NavBackIcon = styled.span`
+  padding-right: 10px;
+  display: flex;
+`;
+
+export const BackIconWithText = styled.span`
+  display: flex;
+  align-items: center;
 `;

@@ -115,7 +115,11 @@ function Products(props) {
 
   return (
     <div>
-      <NavBar showCart={true} count={Object.keys(cart).length} />
+      <NavBar
+        showCart={true}
+        heading={"Products"}
+        count={Object.keys(cart).length}
+      />
       <SearchFilters>
         {Object.values(productFilters).map((filter) => (
           <SearchFilter
