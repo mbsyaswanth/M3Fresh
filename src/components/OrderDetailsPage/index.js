@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import {
@@ -13,28 +13,25 @@ import {
 import OrderItem from "./OrderItem";
 import Navbar from "../Navbar";
 
-import { StoreContext, CartContext } from "../../App";
+import { StoreContext } from "../../App";
 import { goToDeliveryDetailsPage } from "../../utils/RouteUtils";
-import { createObjectCopy } from "../../utils/CommonUtils";
 
 function OrderDetailsPage(props) {
   const history = useHistory();
   const [state, dispatch] = useContext(StoreContext);
-  const [cart, setCart] = useContext(CartContext);
 
   const getTotalCost = () => {
-    const costArray = Object.values(cart).map(
+    const costArray = Object.values(state.cart).map(
       (cartItem) => state.stocks[cartItem.productId].price * cartItem.quantity
     );
     return costArray.reduce((total, currentValue) => total + currentValue, 0);
   };
 
-  console.log(cart);
   return (
     <>
       <Navbar heading={"Order Summary"} />
       <OrdersContainer>
-        {Object.values(cart).map((cartItem) => {
+        {Object.values(state.cart).map((cartItem) => {
           return (
             <OrderItem
               image={state.stocks[cartItem.productId].product_image}
@@ -43,42 +40,34 @@ function OrderDetailsPage(props) {
               quantity={cartItem.quantity}
               unit={state.stocks[cartItem.productId].units}
               increment={() => {
-                setCart({
-                  ...cart,
-                  [cartItem.productId]: {
-                    productId: cartItem.productId,
-                    quantity: cart[cartItem.productId].quantity + 1,
-                  },
+                dispatch({
+                  type: "INCREMENT_CART_ITEM",
+                  productId: cartItem.productId,
                 });
               }}
               decrement={() => {
-                setCart({
-                  ...cart,
-                  [cartItem.productId]: {
-                    productId: cartItem.productId,
-                    quantity: cart[cartItem.productId].quantity - 1,
-                  },
+                dispatch({
+                  type: "DECREMENT_CART_ITEM",
+                  productId: cartItem.productId,
                 });
-                if (cart[cartItem.productId].quantity === 1) {
-                  setCart((prev) => {
-                    const a = createObjectCopy(prev);
-                    delete a[cartItem.productId];
-                    return a;
+                if (state.cart[cartItem.productId].quantity === 1) {
+                  dispatch({
+                    type: "DELETE_CART_ITEM",
+                    productId: cartItem.productId,
                   });
                 }
               }}
               onDelete={() => {
-                setCart((prev) => {
-                  const a = createObjectCopy(prev);
-                  delete a[cartItem.productId];
-                  return a;
+                dispatch({
+                  type: "DELETE_CART_ITEM",
+                  productId: cartItem.productId,
                 });
               }}
             />
           );
         })}
       </OrdersContainer>
-      {Object.values(cart).length > 0 && (
+      {Object.values(state.cart).length > 0 && (
         <NextContainer>
           <CartTotalHeading>
             Total: <CartTotal> ₹ {getTotalCost()}</CartTotal>

@@ -3,7 +3,7 @@ import { SyncLoader } from "react-spinners";
 import { useHistory } from "react-router-dom";
 
 import useCustomInputHandler from "../../customHooks/useInputHandler";
-import { StoreContext, CartContext } from "../../App";
+import { StoreContext } from "../../App";
 import { goToCartSummaryPage } from "../../utils/RouteUtils";
 
 import ItemCard from "../ItemCard";
@@ -32,7 +32,6 @@ function Products(props) {
   const history = useHistory();
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [state, dispatch] = useContext(StoreContext);
-  const [cart, setCart] = useContext(CartContext);
   const [values, handleChange] = useCustomInputHandler({ filterText: "" });
 
   const getFilteredProducts = () => {
@@ -65,37 +64,31 @@ function Products(props) {
           image={product.product_image}
           price={product.price}
           units={product.units}
-          quantity={cart[product.product_id]?.quantity}
+          quantity={state.cart[product.product_id]?.quantity}
           onAdd={() => {
-            setCart({
-              ...cart,
-              [product.product_id]: {
+            dispatch({
+              type: "ADD_ITEM",
+              cartItem: {
                 productId: product.product_id,
                 quantity: 1,
               },
             });
           }}
           increment={() => {
-            setCart({
-              ...cart,
-              [product.product_id]: {
-                productId: product.product_id,
-                quantity: cart[product.product_id].quantity + 1,
-              },
+            dispatch({
+              type: "INCREMENT_CART_ITEM",
+              productId: product.product_id,
             });
           }}
           decrement={() => {
-            setCart({
-              ...cart,
-              [product.product_id]: {
-                productId: product.product_id,
-                quantity: cart[product.product_id].quantity - 1,
-              },
+            dispatch({
+              type: "DECREMENT_CART_ITEM",
+              productId: product.product_id,
             });
-            if (cart[product.product_id].quantity === 1) {
-              setCart((prev) => {
-                delete prev[product.product_id];
-                return prev;
+            if (state.cart[product.product_id].quantity === 1) {
+              dispatch({
+                type: "DELETE_CART_ITEM",
+                productId: product.product_id,
               });
             }
           }}
@@ -118,7 +111,7 @@ function Products(props) {
       <NavBar
         showCart={true}
         heading={"Products"}
-        count={Object.keys(cart).length}
+        count={Object.keys(state.cart).length}
       />
       <SearchFilters>
         {Object.values(productFilters).map((filter) => (
@@ -144,7 +137,7 @@ function Products(props) {
       </Container>
 
       {/* TODO: need to add this button */}
-      {Object.keys(cart).length > 0 && (
+      {Object.keys(state.cart).length > 0 && (
         <GoToCart onClick={() => goToCartSummaryPage(history)}>
           Go To Cart
         </GoToCart>
