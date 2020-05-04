@@ -36,14 +36,7 @@ function InvoiceDetailsPage(props) {
       userName: orderResponse.userName,
       phoneNumber: orderResponse.phone_number,
       address: orderResponse.address,
-      items: Object.values(orderResponse.cart).map((item) => {
-        return {
-          name: state.stocks[item.productId].product_name,
-          quantity: item.quantity,
-          price: state.stocks[item.productId].price,
-          units: state.stocks[item.productId].units,
-        };
-      }),
+      items: orderResponse.orderedProductDetails,
       totalPrice: getTotalCost(),
       date: date,
     };

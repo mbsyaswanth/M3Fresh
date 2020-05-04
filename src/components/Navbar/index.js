@@ -7,14 +7,25 @@ import {
   StyledNavBarContainer,
   CartIconContainer,
   Badge,
+  NavBackIcon,
+  BackIconWithText,
 } from "./styledComponents";
 import CartIcon from "./CartIcon";
+import BackIcon from "../../icons/BackIcon";
 
 function Navbar(props) {
   const history = useHistory();
   return (
     <StyledNavBarContainer>
-      <span onClick={() => goToHomePage(history)}>M3Fresh.</span>
+      <BackIconWithText>
+        {props.hideBack ? null : (
+          <NavBackIcon onClick={() => history.goBack()}>
+            <BackIcon />
+          </NavBackIcon>
+        )}
+        <span>{props.heading}</span>
+      </BackIconWithText>
+
       {props.showCart && props.count > 0 ? (
         <CartIconContainer onClick={() => goToCartSummaryPage(history)}>
           <Badge>{props.count}</Badge>

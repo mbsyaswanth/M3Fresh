@@ -22,7 +22,7 @@ function InvoiceDetails(props) {
     return props.orderDetails.items.map((item, index) => (
       <Item isFirst={index === 0} key={`${item}+${index}`}>
         <ItemName>{`${item.name}  x  ${item.quantity} (${item.units})`}</ItemName>
-        <ItemPrice>{item.price}</ItemPrice>
+        <ItemPrice>{item.price * item.quantity}</ItemPrice>
       </Item>
     ));
   };

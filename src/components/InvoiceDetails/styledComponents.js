@@ -11,7 +11,7 @@ export const InvoiceContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 88px 14px;
+  padding: 110px 14px 0px 14px;
 `;
 
 export const BillDetailsText = styled.h4`
