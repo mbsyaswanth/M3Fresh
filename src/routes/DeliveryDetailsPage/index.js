@@ -16,7 +16,7 @@ function DeliveryDetailsPage() {
       cart: state.cart,
       ...userDetails,
       orderId: orderRef.key,
-      orderedProductDetails: Object.values(cart).map((item) => {
+      orderedProductDetails: Object.values(state.cart).map((item) => {
         return {
           name: state.stocks[item.productId].product_name,
           quantity: item.quantity,
