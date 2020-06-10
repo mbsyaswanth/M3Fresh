@@ -32,6 +32,7 @@ function Orders(props) {
         .map((eachOrder) => (
           <SingleOrder
             key={eachOrder.orderId}
+            status={eachOrder.status}
             username={eachOrder.userName}
             orderId={eachOrder.orderId}
             phoneNumber={eachOrder.phone_number}
