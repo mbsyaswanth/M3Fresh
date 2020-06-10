@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 import Input from "../Input";
 
@@ -45,6 +47,15 @@ function UserDetailForm(props) {
     props.onClickPlaceOrder(obj);
   };
 
+  const uiConfig = {
+    // Popup signin flow rather than redirect flow.
+    signInFlow: "popup",
+    // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+    signInSuccessUrl: "/products",
+    // We will display Google and Facebook as auth providers.
+    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+  };
+
   const renderOrderStatus = () => {
     return (
       <>
@@ -52,10 +63,10 @@ function UserDetailForm(props) {
           <OrderStatusHeading>Order Received</OrderStatusHeading>
           <OrderReceivedIcon />
           <ContactInformation>
-            Please contact{" "}
+            Please contact
             <b>
               <a href={`tel:+91 9553050607`}>9553050607</a>
-            </b>{" "}
+            </b>
             or <b>08542-252203</b> for any queries
           </ContactInformation>
           <ViewInvoiceText>
@@ -67,6 +78,13 @@ function UserDetailForm(props) {
         <PlaceOtherOrderButton onClick={() => goToHomePage(history)}>
           Place Another Order
         </PlaceOtherOrderButton>
+        <div>
+          <p>Please sign-in to save your orders for future:</p>
+          <StyledFirebaseAuth
+            uiConfig={uiConfig}
+            firebaseAuth={firebase.auth()}
+          />
+        </div>
       </>
     );
   };

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useEffect, useState } from "react";
-import firbase from "firebase";
+import firebase from "firebase";
 
 import "./App.css";
 import { initFirebase } from "./firebase";
@@ -38,7 +38,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: "FETCHING" });
-    firbase
+    firebase
       .database()
       .ref("stock")
       .once("value")
