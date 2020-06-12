@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Introduction to this application
 
 We designed this project for online delivery of daily-essentials in my town. This application was born due to the covid-19 situation and lack of local online delivery platforms. Through this project, we were able to provide a simple and robust solution for onine order system that helps customers and the people who were providing the service. We presented this application for use by our district. 
-Initially they started tele-booking service and later extended to online through this app. What all they needed was a simple platform where they can upload their products and update them and customers will just order the products using their address.
+Initially they started tele-booking service and later extended their service to online through this app. What all they needed was a simple application, where all their products are shown and that can help them accept orders online.
 
 ## Technical details 
 Backend - firebase
