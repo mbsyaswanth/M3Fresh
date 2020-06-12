@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+**Demo :** [click here](https://m3fresh-beta.netlify.app/) 
+
+**Note** : The code is in the `dev` branch.
+
 ## Introduction to this application
 
 We designed this project for online delivery of daily-essentials in my town. This application was born due to the covid-19 situation and lack of local online delivery platforms. Through this project, we were able to provide a simple and robust solution for onine order system that helps customers and the people who were providing the service. We presented this application for use by our district. 
@@ -13,6 +17,14 @@ For managing products - We gave them a google sheet where they can add/update th
 For managing orders - a open route with /orders where they can view all the orders
 
 Frontend - React.js with hooks (no 3rd party library for state management)
+
+Hosting - netlify
+
+CI/CD - netlify (created seperatly for production and development)
+
+Why Web? - I really love the flexibility of the web. If mobile app is needed, we can just add **PWA** which is what we have done here.
+
+Designed Tool - Figma
 
 
 ## Instructions to run the project
