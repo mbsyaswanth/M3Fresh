@@ -6,7 +6,6 @@ export const Container = styled.div`
   height: 100vh;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #e7ffec;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,6 +18,7 @@ export const AddressInput = styled.textarea`
   box-sizing: border-box;
   height: 80px;
   border-radius: 5px;
+  background-color: #e7ffec;
   outline: none;
   padding: 10px;
   border: none;
@@ -38,10 +38,8 @@ export const OrderStatusContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 268px;
-  padding: 10px 5px;
-  background: #d7e5d0;
-  border-radius: 20px 0px;
+  padding: 20px 15px;
+  background: #f4f0f0;
   box-sizing: border-box;
 `;
 
@@ -51,7 +49,7 @@ export const OrderStatusHeading = styled.h3`
   font-family: Rubik;
   font-style: normal;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 40px;
   color: #1f5721;
 `;
 
@@ -59,7 +57,7 @@ export const ContactInformation = styled.p`
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 18px;
   color: #178e1c;
   margin: 10px 0;
   text-align: center;
@@ -69,7 +67,7 @@ export const ViewInvoiceText = styled.p`
   font-family: Rubik;
   font-style: normal;
   font-weight: normal;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 15px;
   display: flex;
   align-items: center;
