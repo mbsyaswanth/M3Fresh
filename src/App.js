@@ -8,6 +8,20 @@ import { Routes } from "./routes";
 import { storeStocks } from "./Store";
 
 initFirebase();
+const initMessaging = async () => {
+  try {
+    const messaging = firebase.messaging();
+    await messaging.requestPermission();
+    const token = await messaging.getToken();
+    console.log("token:", token);
+
+    return token;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+initMessaging();
 
 export const StoreContext = createContext();
 

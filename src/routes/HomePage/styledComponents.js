@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Button from '../../components/Button'
 
 export const Container = styled.div`
-height: -webkit-fill-available;
+height: 100vh;
 flex:1;
 display:flex;
 flex-direction:column;
