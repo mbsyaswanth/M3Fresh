@@ -8,12 +8,12 @@ flex:1;
 display:flex;
 flex-direction:column;
 align-items:center;
+height:100vh;
 justify-content:flex-start;
 `
 
 export const BodyContainer = styled.div`
 padding-top:90px;
-height:100vh;
 flex:1;
 display:flex;
 flex-direction:column;
